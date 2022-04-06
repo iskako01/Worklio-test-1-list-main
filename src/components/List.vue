@@ -44,7 +44,7 @@ export default defineComponent({
         id: Date.now(),
       },
     ]);
-    const date = ref(format(new Date(), 'MM/dd/yyyy hh:mm a'));
+    const date = ref(format(new Date(), 'dd/MM/yyyy hh:mm a'));
     const filter = ref({ name: '' });
 
     const isActive = computed(() => taskName.value);
