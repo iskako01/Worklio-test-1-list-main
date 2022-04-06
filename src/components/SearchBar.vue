@@ -14,6 +14,7 @@ import { defineComponent, ref, watch, computed } from 'vue';
 import IconCancel from './svg/IconCancel.vue';
 
 export default defineComponent({
+  name: 'SearchBar',
   components: { IconCancel },
   props: ['modelValue'],
   emits: ['update:modelValue'],
@@ -27,6 +28,7 @@ export default defineComponent({
       }
     };
 
+    //Function for cleaning the input
     const reset = () => {
       name.value = '';
     };

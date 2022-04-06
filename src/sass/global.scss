@@ -39,49 +39,41 @@ html {
   outline: none;
   background: #fff;
   transition: all 0.22s;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 1 !important;
+    background: #eee !important;
+    border-color: #ddd !important;
+    color: #999 !important;
+  }
+  &:active {
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+  &.primary {
+    background: #42b983;
+    color: #fff;
+  }
+  &.danger {
+    background: #e53935;
+    color: #fff;
+    border-color: #e53935;
+  }
+  &.warning {
+    background: #c25205;
+    color: #fff;
+    border-color: #c25205;
+  }
 }
-
-.btn:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-.btn:disabled {
-  cursor: not-allowed;
-  opacity: 1 !important;
-  background: #eee !important;
-  border-color: #ddd !important;
-  color: #999 !important;
-}
-
-.btn:active {
-  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
-}
-
-.btn.primary {
-  background: #42b983;
-  color: #fff;
-}
-
-.btn.danger {
-  background: #e53935;
-  color: #fff;
-  border-color: #e53935;
-}
-
-.btn.warning {
-  background: #c25205;
-  color: #fff;
-  border-color: #c25205;
-}
-
 .container {
   margin: 0 auto;
   max-width: 1000px;
-}
-
-.container.with-nav {
-  margin-top: 70px;
+  &.with-nav {
+    margin-top: 70px;
+  }
 }
 
 .form {
@@ -94,31 +86,31 @@ html {
   width: 100%;
   margin-bottom: 20px;
   margin-right: 7px;
-}
-
-.form-control input {
-  margin: 0;
-  outline: none;
-  border: 2px solid #ccc;
-  display: block;
-  width: 100%;
-  color: #2c3e50;
-  padding: 0.5rem 1.5rem;
-  border-radius: 10px;
-  font-size: 1rem;
-  resize: none;
-}
-
-.form-control label {
-  display: block;
-  margin: 0 0 0.3rem 0.3rem;
-  font-weight: 500;
-}
-
-.form-control input:active,
-.form-control input:focus {
-  transition: border 0.22s;
-  border: 2px solid #42b983;
+  & input {
+    margin: 0;
+    outline: none;
+    border: 2px solid #ccc;
+    display: block;
+    width: 100%;
+    color: #2c3e50;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    resize: none;
+    &:active {
+      transition: border 0.22s;
+      border: 2px solid #42b983;
+    }
+    &:focus {
+      transition: border 0.22s;
+      border: 2px solid #42b983;
+    }
+  }
+  & label {
+    display: block;
+    margin: 0 0 0.3rem 0.3rem;
+    font-weight: 500;
+  }
 }
 
 .card {
@@ -128,16 +120,6 @@ html {
   border-radius: 10px;
   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
   background: #fff;
-}
-
-.card.marked {
-  border: 4px solid #42b983;
-}
-
-.card.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .list {
@@ -155,20 +137,21 @@ html {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  &:hover {
+    background: #eee;
+  }
 }
 
-.list-item:hover {
-  background: #eee;
-}
 .filter {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  & > div {
+    margin-right: 2rem;
+    width: 100%;
+    margin-bottom: 0;
+  }
 }
-.filter > div {
-  margin-right: 2rem;
-  width: 100%;
-  margin-bottom: 0;
-}
+
 // :global(#app) {}
 

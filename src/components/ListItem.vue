@@ -16,6 +16,7 @@ import IconTrash from './svg/IconTrash.vue';
 import Itasks from '../types/Itasks';
 
 export default defineComponent({
+  name: 'ListItem',
   components: { IconTrash },
   props: {
     requests: {
@@ -25,6 +26,7 @@ export default defineComponent({
   },
   emits: ['delete-task'],
   setup(_, { emit }) {
+    // Function for deleting a list item
     const deleteTask = (task: Itasks) => {
       emit('delete-task', task);
     };

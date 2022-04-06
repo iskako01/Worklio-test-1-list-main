@@ -2,6 +2,7 @@
   <div class="container">
     <div class="list">
       <h1>Worklio List</h1>
+
       <form class="form" @submit.prevent="addTask">
         <div class="form-control">
           <label for="name">Enter the task name</label>
@@ -15,7 +16,9 @@
       </form>
 
       <hr />
+
       <SearchBar v-model="filter" />
+      <button class="btn" @click="sortByValue">Sort by Value</button>
       <ListItem :requests="requests" @delete-task="deleteTask" />
     </div>
   </div>
@@ -30,6 +33,7 @@ import SearchBar from './SearchBar.vue';
 import IconAdd from './svg/IconAdd.vue';
 
 export default defineComponent({
+  name: 'List',
   components: { ListItem, IconAdd, SearchBar },
   setup() {
     const taskName = ref('');
@@ -44,7 +48,7 @@ export default defineComponent({
     const filter = ref({ name: '' });
 
     const isActive = computed(() => taskName.value);
-
+    // To filter the list
     const requests = computed(() =>
       tasks.value.filter((request) => {
         if (filter.value.name) {
@@ -55,13 +59,21 @@ export default defineComponent({
         return request;
       })
     );
+    //Function to sort the list alphabetically
+    const sortByValue = () => {
+      tasks.value.sort(function (a, b) {
+        const taskNameA = a.taskName.toUpperCase();
+        var taskNameB = b.taskName.toUpperCase();
+        return taskNameA < taskNameB ? -1 : taskNameA > taskNameB ? 1 : 0;
+      });
+    };
 
     //Get data of localStorage
     const dataStorage: string | null = localStorage.getItem('tasks');
     if (dataStorage) {
       tasks.value = JSON.parse(dataStorage);
     }
-    //Add task
+    //Function for adding the task
     const addTask = () => {
       if (taskName.value != '') {
         const tasksData = {
@@ -73,7 +85,7 @@ export default defineComponent({
         taskName.value = '';
       }
     };
-    //Delete task
+    //Function for deleting a list item
     const deleteTask = (currentTask: Itasks) => {
       if (tasks.value.length) {
         console.log(currentTask);
@@ -82,12 +94,20 @@ export default defineComponent({
         localStorage.setItem('tasks', JSON.stringify(tasks.value));
       }
     };
-    // eslint-disable-next-line no-undef
+
     watch(tasks.value, (n, o) => {
       localStorage.setItem('tasks', JSON.stringify(tasks.value));
     });
 
-    return { taskName, tasks, addTask, deleteTask, filter, requests, isActive };
+    return {
+      taskName,
+      addTask,
+      deleteTask,
+      filter,
+      requests,
+      isActive,
+      sortByValue,
+    };
   },
 });
 </script>
